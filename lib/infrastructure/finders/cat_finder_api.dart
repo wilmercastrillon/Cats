@@ -6,13 +6,15 @@ import 'package:cats/domain/interfaces/cat_finder.dart';
 import 'package:http/http.dart' as http;
 
 class CatFinderApi extends CatFinder {
-  CatFinderApi() {
+  CatFinderApi({http.Client? httpClient})
+      : _httpClient = httpClient ?? http.Client() {
     _catApiUrl = AppConfig.breedsUrl;
-    //_catApiKey = AppConfig.apiKey;
+    _catApiKey = AppConfig.apiKey;
   }
 
   late final String _catApiUrl;
   late final String _catApiKey;
+  final http.Client _httpClient;
 
   @override
   Future<List<CatBreed>> getBreeds(int page, int? limit) async {
@@ -21,7 +23,7 @@ class CatFinderApi extends CatFinder {
       'x-api-key': _catApiKey
     };
 
-    final response = await http.get(
+    final response = await _httpClient.get(
       Uri.parse('$_catApiUrl?limit=$limit&page=$page'),
       headers: header,
     );
@@ -41,7 +43,7 @@ class CatFinderApi extends CatFinder {
       'x-api-key': _catApiKey
     };
 
-    final response = await http.get(
+    final response = await _httpClient.get(
       Uri.parse('$_catApiUrl/search?q=$query'),
       headers: header,
     );

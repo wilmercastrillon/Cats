@@ -11,7 +11,7 @@ class CustomImage extends StatelessWidget {
       return Image.asset('assets/images/default.jpg');
     }
     return Image.network(
-      imageUrl!, //breed.image!.url!,
+      imageUrl!,
       loadingBuilder: (BuildContext context, Widget child,
           ImageChunkEvent? loadingProgress) {
         if (loadingProgress == null) return child;

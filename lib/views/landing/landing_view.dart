@@ -45,14 +45,7 @@ class LandingViewState extends ConsumerState<LandingView> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    var catService = ref.read(catServiceProvider);
-    catService.getBreeds(0).then((result) {
-      setState(() {
-        _nextPage++;
-        _items.addAll(result);
-      });
-    });
+    _loadMoreItems();
   }
 
   @override
@@ -62,19 +55,17 @@ class LandingViewState extends ConsumerState<LandingView> {
   }
 
   void _loadMoreItems() {
-    //print("### _loadMoreItems");
     setState(() {
       _isLoading = true;
     });
 
     var catService = ref.read(catServiceProvider);
     catService.getBreeds(_nextPage).then((result) async {
-      await Future.delayed(const Duration(seconds: 5));
+      //await Future.delayed(const Duration(seconds: 5));
       setState(() {
         _nextPage++;
         _items.addAll(result);
         _isLoading = false;
-        //print("### current size: ${_items.length}");
       });
     });
   }
@@ -93,7 +84,7 @@ class LandingViewState extends ConsumerState<LandingView> {
         catService
             .getSearchBreeds(_searchTextController.text)
             .then((result) async {
-          await Future.delayed(const Duration(seconds: 5));
+          //await Future.delayed(const Duration(seconds: 5));
           setState(() {
             _items = result;
             _isLoading = false;
