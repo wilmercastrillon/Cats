@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  //flutter pub run flutter_native_splash:create
-  //flutter run --dart-define-from-file=app_config_dev.json
+  //dart run flutter_native_splash:create
+  //dart run flutter_launcher_icons:main
+  //flutter run --dart-define-from-file=config/app_config_dev.json
   runApp(const ProviderScope(child: MyApp()));
 }
 

@@ -11,8 +11,10 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  flutter_launcher_icons: ^0.14.2
   flutter_native_splash: ^2.4.0
   flutter_riverpod: ^2.6.1
+  google_fonts: ^6.2.1
   http: ^1.2.2
 
 dev_dependencies:
@@ -32,3 +34,10 @@ flutter_native_splash:
   image: assets/images/default.jpg
   android: true
   ios: true
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/icon.png"
+  adaptive_icon_foreground: "assets/images/icon.png"
+  adaptive_icon_background: "#FFFFFF"
